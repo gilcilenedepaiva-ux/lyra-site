@@ -8,7 +8,7 @@ export default function Landing() {
     logs, steps, cur, services, reqs, req, cens, cc,
     showBefore, showAfter, isBefore, isAfter,
     bgBefore, fgBefore, bgAfter, fgAfter,
-    pils, cp, v0, v1, v2, v3, heroT, heroMove, heroLeave,
+    pils, cp, v0, v1, v2, v3, v4, heroT, heroMove, heroLeave,
     sent, editing, errN, errE, errM, errS, serverErr, sendLabel,
     name, email, company, message, website,
     setName, setEmail, setCompany, setMessage, setWebsite,
@@ -61,7 +61,7 @@ export default function Landing() {
 <a  className="btn-o" href="#solucoes" style={css("display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 24px;border-radius:8px;border:1px solid rgba(0,168,255,.5);color:#EAEFFA;font-weight:600;font-size:16px")}>Ver soluções<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
 </div>
 <dl  className="rise d4" style={css("margin:56px 0 0;max-width:520px;display:flex;gap:0;border-top:1px solid rgba(234,239,250,.10);padding-top:24px")}>
-<div style={css("flex:1")}><dt style={css("font-family:'Sora',sans-serif;font-size:24px;color:#EAEFFA")}>4</dt><dd style={css("margin:4px 0 0;font-size:12px;color:#9AA6BF")}>pilares técnicos</dd></div>
+<div style={css("flex:1")}><dt style={css("font-family:'Sora',sans-serif;font-size:24px;color:#EAEFFA")}>5</dt><dd style={css("margin:4px 0 0;font-size:12px;color:#9AA6BF")}>pilares técnicos</dd></div>
 <div style={css("flex:1")}><dt  className="c120" aria-label="5" style={css("font-family:'Sora',sans-serif;font-size:24px;color:#EAEFFA;font-variant-numeric:tabular-nums")}></dt><dd style={css("margin:4px 0 0;font-size:12px;color:#9AA6BF")}>etapas no método</dd></div>
 <div style={css("flex:1")}><dt style={css("font-family:'Sora',sans-serif;font-size:24px;color:#EAEFFA")}>1</dt><dd style={css("margin:4px 0 0;font-size:12px;color:#9AA6BF")}>equipe do início ao fim</dd></div>
 </dl>
@@ -125,7 +125,7 @@ export default function Landing() {
 <div style={css("position:relative;max-width:1920px;margin:0 auto;padding:0 clamp(20px,4vw,110px);box-sizing:border-box")}>
 <div style={css("display:flex;align-items:center;gap:12px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#00A8FF")}><span>01</span><span aria-hidden="true">/</span><span>Matriz de soluções</span></div>
 <div  className="rv" style={css("margin-top:16px;max-width:760px;display:flex;flex-direction:column;gap:20px")}>
-<h2 style={css("font-size:clamp(32px,4vw,72px);font-weight:700;line-height:1.05;letter-spacing:-.025em")}>Quatro especialidades.<br />Uma operação <span style={css("position:relative;display:inline-block")}>integrada.<svg aria-hidden="true" viewBox="0 0 200 14" preserveAspectRatio="none" style={css("position:absolute;left:0;bottom:-8px;width:100%;height:14px;overflow:visible")} fill="none" stroke="#1AE0FF" strokeWidth="3" strokeLinecap="round"><path vectorEffect="non-scaling-stroke" d="M3 9 C 40 2, 80 13, 120 6 S 180 9, 197 4"/></svg></span></h2>
+<h2 style={css("font-size:clamp(32px,4vw,72px);font-weight:700;line-height:1.05;letter-spacing:-.025em")}>Cinco especialidades.<br />Uma operação <span style={css("position:relative;display:inline-block")}>integrada.<svg aria-hidden="true" viewBox="0 0 200 14" preserveAspectRatio="none" style={css("position:absolute;left:0;bottom:-8px;width:100%;height:14px;overflow:visible")} fill="none" stroke="#1AE0FF" strokeWidth="3" strokeLinecap="round"><path vectorEffect="non-scaling-stroke" d="M3 9 C 40 2, 80 13, 120 6 S 180 9, 197 4"/></svg></span></h2>
 <p style={css("margin:0;max-width:540px;font-size:17px;line-height:1.7;color:#9AA6BF")}>Da construção à autonomia da equipe. A arquitetura completa para o seu negócio.</p>
 <div style={css("display:flex;align-items:flex-start;gap:8px;color:#4FFAFF;transform:rotate(-2deg);transform-origin:left center")}><span style={css("font-family:'Caveat',cursive;font-size:clamp(24px,2vw,30px);line-height:1.1")}>clica num pilar pra ver por dentro</span><svg aria-hidden="true" width="40" height="44" viewBox="0 0 40 44" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" style={css("flex:none")}><path d="M6 4 C 26 4, 36 18, 30 36"/><path d="M22 30 L30 38 L36 26"/></svg></div>
 </div>
@@ -164,13 +164,20 @@ export default function Landing() {
 <div style={css("width:176px;border:1px solid rgba(0,168,255,.3);background:#000102;border-radius:4px;padding:12px;box-sizing:border-box")}><div style={css("font-family:'JetBrains Mono',monospace;font-size:11px;color:#4FFAFF")}>VISÃO EXECUTIVA</div><div style={css("margin-top:12px;height:48px;display:flex;align-items:flex-end;gap:6px")}><div  className="bar" style={css("flex:1;height:16px;border-radius:2px 2px 0 0;background:rgba(0,168,255,.6)")}></div><div  className="bar" style={css("flex:1;height:28px;border-radius:2px 2px 0 0;background:rgba(0,168,255,.6);animation-delay:.3s")}></div><div  className="bar" style={css("flex:1;height:20px;border-radius:2px 2px 0 0;background:rgba(0,168,255,.6);animation-delay:.6s")}></div><div  className="bar" style={css("flex:1;height:36px;border-radius:2px 2px 0 0;background:rgba(0,168,255,.6);animation-delay:.9s")}></div><div  className="bar" style={css("flex:1;height:32px;border-radius:2px 2px 0 0;background:rgba(0,168,255,.6);animation-delay:1.2s")}></div><div  className="bar" style={css("flex:1;height:48px;border-radius:2px 2px 0 0;background:rgba(0,168,255,.6);animation-delay:1.5s")}></div></div></div>
 </>)}
 {v2 && (<>
+<div style={css("width:96px;height:80px;border:1px solid rgba(0,168,255,.25);background:#000102;border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#9AA6BF")}><span style={css("font-size:18px")}>✉</span><span style={css("font-family:'JetBrains Mono',monospace;font-size:11px")}>GATILHO</span></div>
+<span style={css("color:#00A8FF")}>→</span>
+<div style={css("width:96px;height:80px;border:1px solid rgba(0,168,255,.25);background:#000102;border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#9AA6BF")}><span style={css("font-size:18px;color:#00A8FF")}>⚙</span><span style={css("font-family:'JetBrains Mono',monospace;font-size:11px")}>FLUXO + IA</span></div>
+<span style={css("color:#00A8FF")}>→</span>
+<div style={css("width:96px;height:80px;border:1px solid rgba(26,224,255,.5);background:#000102;border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#4FFAFF")}><span  className="node" style={css("font-size:18px")}>✓</span><span style={css("font-family:'JetBrains Mono',monospace;font-size:11px")}>AUTOMÁTICO</span></div>
+</>)}
+{v3 && (<>
 <div style={css("width:96px;height:80px;border:1px solid rgba(0,168,255,.25);background:#000102;border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#9AA6BF")}><span style={css("font-size:18px")}>▤</span><span style={css("font-family:'JetBrains Mono',monospace;font-size:11px")}>LEGADO</span></div>
 <span style={css("color:#00A8FF")}>→</span>
 <div style={css("width:96px;height:80px;border:1px solid rgba(0,168,255,.25);background:#000102;border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#9AA6BF")}><span style={css("font-size:18px;color:#00A8FF")}>⇄</span><span style={css("font-family:'JetBrains Mono',monospace;font-size:11px")}>ERP / CRM</span></div>
 <span style={css("color:#00A8FF")}>→</span>
 <div style={css("width:96px;height:80px;border:1px solid rgba(26,224,255,.5);background:#000102;border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#4FFAFF")}><span  className="node" style={css("font-size:18px")}>✓</span><span style={css("font-family:'JetBrains Mono',monospace;font-size:11px")}>GO-LIVE</span></div>
 </>)}
-{v3 && (<>
+{v4 && (<>
 <div style={css("width:64px;height:64px;border:1px solid rgba(0,168,255,.3);background:#000102;border-radius:50%;display:flex;align-items:center;justify-content:center")}><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00A8FF" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m2 9 10-5 10 5-10 5zM6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg></div>
 <div style={css("width:176px;display:grid;gap:12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(234,239,250,.8)")}>
 <div style={css("display:flex;align-items:center;gap:8px")}><span style={css("color:#00A8FF")}>✓</span>POWER BI<span style={css("margin-left:auto;height:4px;width:48px;border-radius:2px;background:rgba(0,168,255,.5)")}></span></div>
