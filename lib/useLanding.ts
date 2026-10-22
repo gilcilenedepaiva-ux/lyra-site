@@ -7,6 +7,7 @@ const WHATSAPP = "5562994643122";
 const pData = [
   { title: "Sistemas Web & Apps", sub: "Seu sistema, do jeito que a sua empresa trabalha.", desc: "Criamos o sistema ou o aplicativo sob medida, para você parar de se adaptar a ferramentas que não servem e ter tudo funcionando do seu jeito.", items: ["Sites, plataformas e apps para celular", "Conexão com os sistemas que você já usa", "Uma base pensada para crescer com você"], out: "Sistema no ar e funcionando" },
   { title: "BI & Painéis em Power BI", sub: "Todos os números, numa tela só.", desc: "Juntamos os dados que hoje estão espalhados e transformamos em painéis fáceis de entender, para você decidir olhando uma tela só.", items: ["Painéis claros para a diretoria e para o dia a dia", "Relatórios que se atualizam sozinhos", "Indicadores definidos junto com a sua equipe"], out: "Painéis prontos e sempre atualizados" },
+  { title: "Automação & Integrações", sub: "O trabalho repetitivo, feito sozinho.", desc: "Automatizamos as tarefas manuais do dia a dia e conectamos as suas ferramentas, com fluxos inteligentes e agentes de IA, para a equipe focar no que importa.", items: ["Fluxos automáticos em Pipefy e plataformas low-code", "Agentes de IA que respondem, classificam e decidem", "Integrações entre planilhas, ERP, CRM e e-mail"], out: "Processos rodando sem trabalho manual" },
   { title: "Implementação de Sistemas", sub: "A troca de sistema sem dor de cabeça.", desc: "Colocamos o sistema novo para rodar sem susto, cuidando da troca, dos dados e da conexão entre todas as ferramentas.", items: ["Migração dos dados do sistema antigo", "Integração com ERP, CRM e outras ferramentas", "Acompanhamento no dia da virada e depois dela"], out: "Operação nova rodando com segurança" },
   { title: "Treinamentos", sub: "Equipe segura para usar tudo.", desc: "Ensinamos a sua equipe a usar as ferramentas no dia a dia, para o conhecimento ficar dentro da empresa.", items: ["Power BI na prática, com dados da sua rotina", "Treino nas ferramentas que implantamos", "Autonomia para operar e evoluir sem depender de terceiros"], out: "Equipe preparada e autônoma" },
 ];
@@ -39,7 +40,7 @@ const reqData = [
   { title: "Falar com um especialista", desc: "Uma conversa objetiva para entender o seu cenário e indicar o melhor caminho." },
   { title: "Agendar um diagnóstico", desc: "Mapeamos processos, sistemas e dados para priorizar o que gera mais valor." },
 ];
-const serviceNames = ["Sistemas Web & Apps", "BI / Power BI", "Implementação", "Treinamentos"];
+const serviceNames = ["Sistemas Web & Apps", "BI / Power BI", "Automação & Integrações", "Implementação", "Treinamentos"];
 
 type Status = "idle" | "sending" | "sent";
 
@@ -69,7 +70,7 @@ export function useLanding() {
   }, []);
   useEffect(() => {
     if (manual) return;
-    const p = setInterval(() => setPil((v) => (v + 1) % 4), 6500);
+    const p = setInterval(() => setPil((v) => (v + 1) % pData.length), 6500);
     return () => clearInterval(p);
   }, [manual]);
 
@@ -172,7 +173,7 @@ export function useLanding() {
     isBefore: bef, isAfter: !bef,
     bgBefore: bef ? "#0566E8" : "transparent", fgBefore: bef ? "#EAEFFA" : "#9AA6BF",
     bgAfter: !bef ? "#0566E8" : "transparent", fgAfter: !bef ? "#EAEFFA" : "#9AA6BF",
-    pils, cp, v0: pil === 0, v1: pil === 1, v2: pil === 2, v3: pil === 3,
+    pils, cp, v0: pil === 0, v1: pil === 1, v2: pil === 2, v3: pil === 3, v4: pil === 4,
     heroT,
     heroMove: (ev: MouseEvent<HTMLElement>) => {
       const r = ev.currentTarget.getBoundingClientRect();
