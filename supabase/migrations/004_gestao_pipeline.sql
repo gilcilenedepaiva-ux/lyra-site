@@ -1,0 +1,4 @@
+-- Lyra Gestão v2 (24/11/2026): pipeline comercial em prospects (etapa, proxima_acao, valor, notas, etapa_em),
+-- gatilho prospects_auto_etapa (quem responde entra no pipeline) e função gestao_extra(dias) com alertas,
+-- tendências, segmentos, cidades, dispositivos, leads quentes e atividade recente.
+-- Aplicado no banco pela migração gestao_v2_pipeline_e_indicadores (ver o Supabase para o texto completo).

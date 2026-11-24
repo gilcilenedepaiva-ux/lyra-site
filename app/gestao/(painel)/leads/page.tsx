@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { select, dbReady } from "@/lib/gestao/db";
+import { moverEtapa } from "../actions";
 
-type P = { cnpj: string; empresa: string; email: string; cidade: string | null; ramo: string | null; status: string; enviado_1: string | null; link_demo: string | null };
+type P = { cnpj: string; empresa: string; email: string; cidade: string | null; ramo: string | null; status: string; enviado_1: string | null; link_demo: string | null; etapa: string | null };
 type L = { id: string; created_at: string; name: string; email: string; company: string | null; message: string; status: string };
 const RAMO: Record<string, string> = { saude: "Clínica", rest: "Restaurante", loja: "Loja", beleza: "Salão", imob: "Imobiliária", geral: "Serviços", contabil: "Contabilidade" };
 const ST: Record<string, [string, string]> = {
@@ -9,6 +10,7 @@ const ST: Record<string, [string, string]> = {
   descadastrado: ["saiu", "bad"], invalido: ["inválido", "bad"], novo: ["na fila", ""],
   em_contato: ["em contato", "info"], fechado: ["fechado", "ok"], descartado: ["descartado", "bad"],
 };
+const ETAPA: Record<string, string> = { respondeu: "Respondeu", conversa: "Em conversa", reuniao: "Reunião", proposta: "Proposta", fechado: "Fechado", perdido: "Perdido" };
 const mask = (e: string) => { const [u, d] = e.split("@"); return `${u.slice(0, 3)}***@${d}`; };
 const dt = (s: string) => new Date(s).toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo", day: "2-digit", month: "2-digit" });
 
@@ -20,7 +22,7 @@ export default async function Leads({ searchParams }: { searchParams: Promise<{ 
     f.ramo ? `ramo=eq.${encodeURIComponent(f.ramo)}` : "",
     f.q ? `empresa=ilike.*${encodeURIComponent(f.q.replace(/[*,()]/g, ""))}*` : "",
   ].filter(Boolean).join("&");
-  const prospects = await select<P>("prospects", `select=cnpj,empresa,email,cidade,ramo,status,enviado_1,link_demo&order=updated_at.desc&limit=200${filt ? "&" + filt : ""}`);
+  const prospects = await select<P>("prospects", `select=cnpj,empresa,email,cidade,ramo,status,enviado_1,link_demo,etapa&order=updated_at.desc&limit=200${filt ? "&" + filt : ""}`);
   const site = await select<L>("leads", "select=id,created_at,name,email,company,message,status&order=created_at.desc&limit=30");
 
   return (
@@ -63,11 +65,18 @@ export default async function Leads({ searchParams }: { searchParams: Promise<{ 
         </form>
         {prospects.length ? (
           <table className="lg-table">
-            <thead><tr><th>Empresa</th><th>Segmento</th><th>Cidade</th><th>E-mail</th><th>1º e-mail</th><th>Status</th><th></th></tr></thead>
+            <thead><tr><th>Empresa</th><th>Segmento</th><th>Cidade</th><th>E-mail</th><th>1º e-mail</th><th>Status</th><th>Pipeline</th><th></th></tr></thead>
             <tbody>{prospects.map(p => (
               <tr key={p.cnpj}><td>{p.empresa}</td><td>{RAMO[p.ramo ?? ""] ?? p.ramo}</td><td>{p.cidade}</td><td>{mask(p.email)}</td>
                 <td>{p.enviado_1 ? dt(p.enviado_1) : "-"}</td>
                 <td><span className={`lg-pill ${ST[p.status]?.[1] ?? ""}`}>{ST[p.status]?.[0] ?? p.status}</span></td>
+                <td>{p.etapa ? <Link href="/gestao/pipeline" className="lg-pill info">{ETAPA[p.etapa] ?? p.etapa}</Link> : p.status !== "invalido" && (
+                  <form action={moverEtapa} className="lg-addrow">
+                    <input type="hidden" name="cnpj" value={p.cnpj} />
+                    <select name="etapa" defaultValue="conversa">{Object.entries(ETAPA).map(([k, v]) => <option key={k} value={k}>{v}</option>)}</select>
+                    <button type="submit">+ pipeline</button>
+                  </form>
+                )}</td>
                 <td>{p.link_demo && <a className="lg-hint" href={p.link_demo} target="_blank" rel="noopener">ver demo ↗</a>}</td></tr>
             ))}</tbody>
           </table>
