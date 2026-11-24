@@ -1,0 +1,3 @@
+-- Lyra Gestão: números do painel (só o servidor chama, via service role)
+-- Mesmo conteúdo aplicado no banco em 24/11/2026 (migração gestao_resumo_fn).
+-- Ver a função public.gestao_resumo(dias int) no Supabase para o texto completo.

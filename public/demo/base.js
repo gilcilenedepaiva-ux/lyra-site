@@ -96,11 +96,37 @@ window.LyraDemo = (function(){
   function esc(s){ var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
   function slug(s){ return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '').slice(0, 28) || 'suaempresa'; }
 
+  // Registro de uso das demos no Lyra Gestão (sem IP e sem dados pessoais; só o nome da empresa do link)
+  var DEMO = /automacoes/.test(location.pathname) ? 'automacoes' : /\/site/.test(location.pathname) ? 'site' : 'atendimento';
+  function sid(){
+    try { var s = sessionStorage.getItem('lyra_sid'); if(!s){ s = Math.random().toString(36).slice(2) + Date.now().toString(36); sessionStorage.setItem('lyra_sid', s); } return s; }
+    catch(e){ return 'na'; }
+  }
+  function track(type){
+    try {
+      if(q.get('gif') === '1' || q.get('auto') === '1' || /^(localhost|127\.)/.test(location.hostname)) return;
+      var body = JSON.stringify({ type: type, sid: sid(), path: location.pathname + location.search, ref: document.referrer || null,
+        utm: q.get('utm_source'), demo: DEMO, ramo: q.get('r'), company: emp || null, lid: q.get('lid') });
+      if(navigator.sendBeacon) navigator.sendBeacon('/api/track', new Blob([body], {type: 'text/plain'}));
+      else fetch('/api/track', {method: 'POST', body: body, keepalive: true});
+    } catch(e){}
+  }
+  var interacted = false;
+  function trackClicks(){
+    document.addEventListener('click', function(e){
+      var t = e.target && e.target.closest ? e.target : null; if(!t) return;
+      if(t.closest('.js-wa')) return track('demo_whatsapp');
+      if(t.closest('[data-p]')) return track('demo_troca');
+      if(!interacted && (t.closest('.rb') || t.closest('.sc') || t.closest('.chip') || t.closest('.sw') || t.closest('#f'))){ interacted = true; track('demo_interacao'); }
+    }, true);
+  }
+
   function init(){
     var h = document.querySelector('h1');
     if(h) words(h, 0.1);
     reveal(); sticky();
+    track('demo_view'); trackClicks();
   }
 
-  return {emp: emp, q: q, $: $, words: words, nav: nav, wa: wa, chips: chips, Core: Core, esc: esc, slug: slug, init: init};
+  return {emp: emp, q: q, $: $, words: words, nav: nav, wa: wa, chips: chips, Core: Core, esc: esc, slug: slug, init: init, track: track};
 })();
