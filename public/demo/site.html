@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Site / landing page · Demonstração Lyra</title>
+<meta name="description" content="Veja como ficaria o site da sua empresa: pronto pro celular, com botão de WhatsApp e formulário que avisa você na hora.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Assim ficaria o site da sua empresa">
+<link rel="icon" href="/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&family=Caveat:wght@700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#050B33;--deep:#0A1F3B;--cyan:#1AE0FF;--ice:#4FFAFF;--blue:#0566E8;--azure:#00A8FF;--txt:#EAEFFA;--mut:#9FB0D6;
+  --f-d:'Sora',system-ui,sans-serif;--f-b:'Inter',system-ui,sans-serif;--f-m:'IBM Plex Mono',ui-monospace,monospace}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:radial-gradient(1200px 700px at 80% -10%,#0d2a6b 0,transparent 60%),var(--navy);color:var(--txt);font-family:var(--f-b);-webkit-font-smoothing:antialiased;min-height:100vh}
+a{color:inherit}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:1180px;margin:0 auto;padding:20px 16px}
+.top img{height:40px;display:block}
+.tag{font-family:var(--f-m);font-size:11px;letter-spacing:.08em;color:var(--ice);border:1px solid rgba(26,224,255,.35);border-radius:99px;padding:6px 12px;white-space:nowrap}
+.dnav{max-width:1180px;margin:0 auto;padding:0 16px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.dnav a{flex:none;font:600 13px var(--f-b);text-decoration:none;color:var(--mut);padding:8px 14px;border-radius:99px;border:1px solid rgba(234,239,250,.12)}
+.dnav a[aria-current=page]{color:var(--navy);background:var(--ice);border-color:var(--ice)}
+main{max-width:1180px;margin:0 auto;padding:0 16px 40px}
+.kicker{font-family:var(--f-m);font-size:12px;letter-spacing:.12em;color:var(--cyan);margin:26px 0 10px}
+h1{font-family:var(--f-d);font-weight:800;font-size:clamp(28px,4.4vw,48px);line-height:1.08;letter-spacing:-.03em;margin:0;max-width:860px;text-wrap:balance}
+h1 .em{color:var(--cyan)}
+.sub{color:var(--mut);font-size:17px;line-height:1.55;max-width:700px;margin:14px 0 0}
+.sub b{color:var(--txt)}
+.ctrls{display:flex;flex-wrap:wrap;gap:14px 26px;margin:20px 0 0;align-items:center}
+.grp{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.grp>span{font-family:var(--f-m);font-size:12px;color:var(--mut);margin-right:4px}
+.chip{font:500 13px var(--f-b);color:var(--txt);background:rgba(234,239,250,.06);border:1px solid rgba(234,239,250,.16);border-radius:99px;padding:7px 13px;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--blue);border-color:var(--azure)}
+.sw{width:28px;height:28px;border-radius:50%;border:2px solid rgba(234,239,250,.25);cursor:pointer;padding:0}
+.sw[aria-pressed=true]{border-color:#fff;box-shadow:0 0 0 3px rgba(26,224,255,.45)}
+
+.stage{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:36px;align-items:start;margin-top:28px}
+/* janela do navegador */
+.win{border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 0 1px rgba(234,239,250,.12),8px 8px 0 var(--blue);margin:0 auto;width:100%;transition:max-width .45s ease}
+.win.mob{max-width:390px;border-radius:30px}
+.bar{display:flex;align-items:center;gap:10px;background:#E3E8F2;padding:10px 14px}
+.dots{display:flex;gap:6px;flex:none}.dots i{width:10px;height:10px;border-radius:50%;background:#c2cadb}
+.url{flex:1;min-width:0;background:#fff;border-radius:99px;padding:6px 12px;font:500 12.5px var(--f-m);color:#33476e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.url b{color:#0f8a4b;font-weight:500}
+.view{height:620px;overflow-y:auto;position:relative;scroll-behavior:smooth}
+.win.mob .view{height:640px}
+
+/* ===== site de exemplo ===== */
+.site{--c:#0566E8;--c2:#0A1F3B;--soft:#EEF4FF;container-type:inline-size;font-family:var(--f-b);color:#1c2436;background:#fff;min-height:100%}
+.site .reveal{opacity:0;transform:translateY(14px)}
+.site .reveal.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s ease}
+.s-nav{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 5%;position:sticky;top:0;background:rgba(255,255,255,.94);backdrop-filter:blur(6px);z-index:3;border-bottom:1px solid #eef0f5}
+.s-logo{display:flex;align-items:center;gap:8px;font:700 16px var(--f-d);color:var(--c2);min-width:0}
+.s-logo i{flex:none;width:30px;height:30px;border-radius:9px;background:var(--c);color:#fff;display:grid;place-items:center;font-style:normal;font-size:15px}
+.s-logo span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.s-links{display:flex;gap:18px;font-size:13.5px;color:#55607a}
+.s-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:var(--c);color:#fff;border:0;border-radius:10px;padding:11px 18px;font:600 14px var(--f-b);cursor:pointer;text-decoration:none;white-space:nowrap}
+.s-btn.ghost{background:transparent;color:var(--c2);border:1.5px solid #d5dbe8}
+.s-hero{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center;padding:46px 5% 40px;background:linear-gradient(180deg,var(--soft),#fff)}
+.s-hero small{display:inline-block;font:600 12px var(--f-b);color:var(--c);background:#fff;border:1px solid #e3e8f2;border-radius:99px;padding:5px 11px}
+.s-hero h2{font:800 clamp(26px,5cqi,42px)/1.08 var(--f-d);letter-spacing:-.03em;color:var(--c2);margin:12px 0 0}
+.site.serif .s-hero h2,.site.serif h3{font-family:'Playfair Display',Georgia,serif;letter-spacing:-.01em}
+.s-hero p{font-size:16px;line-height:1.55;color:#55607a;margin:12px 0 0}
+.s-hero .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.s-art{aspect-ratio:1/1;border-radius:24px;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.55),transparent 45%),linear-gradient(135deg,var(--c),var(--c2));display:grid;place-items:center;font-size:clamp(60px,14cqi,120px);position:relative;box-shadow:0 20px 40px rgba(10,31,59,.18)}
+.s-art .badge{position:absolute;left:-10px;bottom:16px;background:#fff;border-radius:12px;padding:9px 12px;font:600 12.5px var(--f-b);color:var(--c2);box-shadow:0 8px 20px rgba(10,31,59,.18)}
+.s-trust{display:flex;flex-wrap:wrap;gap:8px 22px;padding:16px 5%;font-size:13px;color:#55607a;border-bottom:1px solid #eef0f5}
+.s-sec{padding:40px 5%}
+.s-sec h3{font:800 clamp(20px,3.4cqi,28px) var(--f-d);letter-spacing:-.02em;color:var(--c2);margin:0 0 18px}
+.s-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.s-card{border:1px solid #e6eaf2;border-radius:16px;padding:18px}
+.s-card i{font-style:normal;font-size:24px;width:44px;height:44px;border-radius:12px;background:var(--soft);display:grid;place-items:center}
+.s-card b{display:block;font:700 16px var(--f-d);color:var(--c2);margin-top:12px}
+.s-card p{margin:6px 0 0;font-size:14px;line-height:1.5;color:#55607a}
+.s-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;counter-reset:n}
+.s-steps div{counter-increment:n;padding-left:46px;position:relative;font-size:14px;line-height:1.5;color:#55607a}
+.s-steps div:before{content:counter(n);position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;font:700 14px var(--f-d)}
+.s-steps b{display:block;color:var(--c2)}
+.s-dep{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.s-dep figure{margin:0;background:var(--soft);border-radius:16px;padding:16px;font-size:14px;line-height:1.5;color:#33405c}
+.s-dep figcaption{margin-top:10px;font-weight:600;color:var(--c2);font-size:13px}
+.s-dep .st{color:#f5a623;letter-spacing:2px}
+.s-ex{font-size:11.5px;color:#8a94ab;margin:10px 0 0}
+.s-form{background:var(--c2);color:#fff;border-radius:20px;padding:26px;display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:center}
+.s-form h3{color:#fff;margin:0}
+.s-form p{color:rgba(255,255,255,.75);font-size:14.5px;line-height:1.5;margin:8px 0 0}
+.s-form form{display:grid;gap:10px}
+.s-form input,.s-form select{font:500 14px var(--f-b);border:0;border-radius:10px;padding:12px 13px;width:100%;color:#1c2436}
+.s-form .s-btn{background:#fff;color:var(--c2);padding:13px}
+.s-foot{padding:22px 5% 70px;font-size:12.5px;color:#8a94ab;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
+.s-wa{position:sticky;bottom:14px;margin:-60px 14px 0 auto;width:54px;height:54px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 8px 20px rgba(0,0,0,.25);z-index:4;color:#fff;font-size:26px;text-decoration:none;cursor:pointer}
+.s-toast{position:sticky;top:64px;z-index:6;margin:0 auto;width:min(92%,380px);height:0;overflow:visible}
+.s-toast div{background:rgba(10,31,59,.97);color:#fff;border-radius:14px;padding:12px 14px;border:1px solid rgba(26,224,255,.45);box-shadow:0 14px 30px rgba(0,0,0,.3);transform:translateY(-20px);opacity:0;transition:all .4s;pointer-events:none}
+.s-toast div.on{transform:none;opacity:1}
+.s-toast small{display:block;font:500 11px var(--f-m);letter-spacing:.06em;color:var(--ice);margin-bottom:3px}
+.s-toast b{font-size:14px}
+.s-toast p{margin:3px 0 0;font-size:12.5px;color:#c9d6f2;line-height:1.35}
+@container (max-width:640px){
+  .s-links{display:none}
+  .s-nav .s-btn{padding:9px 12px;font-size:13px}
+  .s-hero{grid-template-columns:1fr;padding-top:30px}
+  .s-art{aspect-ratio:16/10;font-size:72px}
+  .s-cards,.s-steps,.s-dep,.s-form{grid-template-columns:1fr}
+}
+/* building overlay */
+.build{position:absolute;inset:0;z-index:9;background:rgba(5,11,51,.9);display:grid;place-items:center;text-align:center;color:var(--txt);transition:opacity .5s}
+.build.off{opacity:0;pointer-events:none}
+.build p{font:500 13px var(--f-m);letter-spacing:.06em;color:var(--ice);margin:14px 0 0;min-height:18px}
+.spin{width:44px;height:44px;margin:0 auto;border-radius:50%;border:3px solid rgba(26,224,255,.2);border-top-color:var(--cyan);animation:sp 0.8s linear infinite}
+
+/* lateral */
+.side h2{font:700 20px var(--f-d);margin:0 0 14px}
+.side ul{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.side li{display:flex;gap:10px;line-height:1.45;color:var(--mut);font-size:15px}
+.side li b{color:var(--txt);display:block}
+.side li i{font-style:normal;flex:none;width:28px;height:28px;border-radius:8px;background:rgba(26,224,255,.12);display:grid;place-items:center;font-size:15px}
+.note{font-family:'Caveat',cursive;font-size:25px;color:var(--ice);transform:rotate(-2deg);margin:22px 0 0}
+
+.cta{margin-top:56px;border:1px solid rgba(26,224,255,.25);border-radius:20px;padding:32px 24px;background:linear-gradient(135deg,rgba(5,102,232,.25),rgba(10,31,59,.6))}
+.cta h2{font-family:var(--f-d);font-weight:800;font-size:clamp(24px,3.2vw,34px);letter-spacing:-.02em;margin:0}
+.cta p{color:var(--mut);line-height:1.55;margin:10px 0 0;max-width:660px}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.btn{display:inline-flex;align-items:center;gap:8px;height:50px;padding:0 24px;border-radius:10px;background:var(--blue);color:#fff;font-weight:600;font-size:16px;text-decoration:none;box-shadow:4px 4px 0 var(--azure)}
+.btn.o{background:transparent;border:1px solid rgba(0,168,255,.5);box-shadow:none;cursor:pointer;font-family:inherit}
+footer{max-width:1180px;margin:0 auto;padding:24px 16px 40px;color:#6f80a8;font-size:13px;line-height:1.6}
+@keyframes sp{to{transform:rotate(360deg)}}
+@media (max-width:960px){.stage{grid-template-columns:1fr}.view{height:560px}}
+@media (max-width:520px){.vgrp{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition-duration:.01s!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <a href="/" aria-label="Lyra Technology &amp; Consulting"><img src="/demo/logo.svg" alt="Lyra Technology &amp; Consulting"></a>
+  <span class="tag">DEMONSTRAÇÃO · DADOS FICTÍCIOS</span>
+</header>
+<nav class="dnav" id="dnav" aria-label="Outras demonstrações">
+  <a data-p="/demo">💬 Atendimento</a>
+  <a data-p="/demo/automacoes">⚡ Automações</a>
+  <a data-p="/demo/site" aria-current="page">🖥️ Site / landing page</a>
+</nav>
+
+<main>
+  <section>
+    <p class="kicker">SITE / LANDING PAGE</p>
+    <h1>Assim ficaria o site <span class="em" id="emp">da sua empresa</span></h1>
+    <p class="sub">Montamos um exemplo com o nome e o ramo de vocês. <b>Mude a cor, veja no celular e teste o formulário</b>: é ele que transforma visita em cliente.</p>
+    <div class="ctrls">
+      <div class="grp" id="chips"><span>RAMO:</span></div>
+      <div class="grp" id="cores"><span>COR:</span></div>
+      <div class="grp vgrp" id="views"><span>VER NO:</span></div>
+    </div>
+  </section>
+
+  <section class="stage">
+    <div class="win" id="win">
+      <div class="bar"><div class="dots"><i></i><i></i><i></i></div><div class="url" id="url"></div></div>
+      <div class="view" id="view">
+        <div class="build" id="build"><div><div class="spin"></div><p id="bmsg">montando o site…</p></div></div>
+        <div class="site" id="site"></div>
+      </div>
+    </div>
+    <aside class="side">
+      <h2>O que vem no site</h2>
+      <ul>
+        <li><i>📱</i><div><b>Feito pro celular</b>A maioria dos clientes vai abrir pelo celular. Toque em "Celular" e veja.</div></li>
+        <li><i>💬</i><div><b>Botão direto pro WhatsApp</b>Um toque e o cliente já está falando com vocês.</div></li>
+        <li><i>📝</i><div><b>Formulário que avisa na hora</b>Cada contato chega no seu WhatsApp ou e-mail. Teste ali do lado.</div></li>
+        <li><i>🔎</i><div><b>Pronto pro Google</b>Estrutura certa pra empresa ser encontrada na cidade.</div></li>
+        <li><i>🌐</i><div><b>Domínio próprio e seguro</b>seunome.com.br com cadeado (https).</div></li>
+        <li><i>📊</i><div><b>Você vê os resultados</b>Quantas visitas e quantos contatos o site trouxe.</div></li>
+      </ul>
+      <p class="note">e dá pra ligar no atendimento automático ✨</p>
+    </aside>
+  </section>
+
+  <section class="cta">
+    <h2>Quer um site assim pra sua empresa?</h2>
+    <p>A Lyra cria o site com a cara do seu negócio, publica no seu domínio e conecta o formulário e o WhatsApp. Atendemos o Brasil todo, 100% online.</p>
+    <div class="btns">
+      <a class="btn" id="wa" href="https://wa.me/5562994643122" target="_blank" rel="noopener">Quero um site assim →</a>
+      <button class="btn o" id="again" type="button">↻ Montar de novo</button>
+    </div>
+  </section>
+</main>
+
+<footer>Esta é uma demonstração com dados fictícios (depoimentos, telefone e endereço são exemplos), feita pela Lyra Technology &amp; Consulting.<br>lyratech.com.br · contato@lyratech.com.br · (62) 99464-3122</footer>
+
+<script>
+(function(){
+  var R = {
+    geral:{rot:'Serviços',ic:'🚀',tag:'Atendimento em toda a região',h:'Soluções que resolvem de verdade',p:'Equipe experiente, atendimento rápido e orçamento sem compromisso.',cta:'Pedir orçamento',badge:'⭐ 4,9 · clientes satisfeitos',
+      cards:[['💼','Consultoria','Entendemos o seu cenário e indicamos o melhor caminho.'],['⚙️','Execução','Cuidamos de tudo, do começo ao fim.'],['📈','Acompanhamento','Relatórios simples pra você ver o resultado.']],
+      passos:[['Você chama','Pelo WhatsApp ou pelo formulário.'],['A gente entende','Uma conversa rápida pra montar a proposta.'],['Mãos à obra','Prazo combinado e acompanhamento.']],
+      dep:[['Resolveram rápido e explicaram tudo. Recomendo!','Paula R.'],['Atendimento excelente do começo ao fim.','Diego M.'],['Preço justo e muito profissionalismo.','Sônia L.']],
+      opts:['Quero um orçamento','Tenho uma dúvida','Outro assunto']},
+    saude:{rot:'Clínicas',ic:'🩺',tag:'Agendamento online',h:'Cuidado de verdade, do agendamento ao retorno',p:'Consultas e exames com hora marcada e um atendimento que olha pra você.',cta:'Agendar consulta',badge:'📅 Horários essa semana',
+      cards:[['👩‍⚕️','Consultas','Profissionais experientes e atendimento sem pressa.'],['🧪','Exames','Resultados rápidos e organizados.'],['💻','Teleconsulta','Atendimento por vídeo, de onde você estiver.']],
+      passos:[['Escolha o horário','Pelo site ou pelo WhatsApp.'],['Receba o lembrete','A gente te avisa um dia antes.'],['Seja bem atendido','Sem fila e sem espera.']],
+      dep:[['Fui muito bem atendida, recomendo de olhos fechados.','Mariana S.'],['Agendei pelo WhatsApp em 2 minutos.','Carlos A.'],['Equipe atenciosa e pontual.','Rita F.']],
+      opts:['Consulta','Exame','Retorno']},
+    beleza:{rot:'Salões e barbearias',ic:'✂️',tag:'Agende online',h:'Seu melhor visual começa aqui',p:'Cortes, barba e tratamentos com profissionais que entendem o seu estilo.',cta:'Agendar horário',badge:'✨ Horários hoje',serif:1,
+      cards:[['💇','Cortes','Do clássico ao moderno, do seu jeito.'],['🧔','Barba','Toalha quente, navalha e acabamento perfeito.'],['💅','Tratamentos','Hidratação, coloração e cuidados.']],
+      passos:[['Escolha o serviço','Corte, barba ou tratamento.'],['Marque o horário','Na hora, pelo celular.'],['É só chegar','A gente te espera.']],
+      dep:[['Melhor corte que já fiz, ambiente top!','Rodrigo P.'],['Profissionais caprichosos e pontuais.','Aline C.'],['Marquei pelo site em 1 minuto.','Bruno T.']],
+      opts:['Corte','Corte + barba','Coloração']},
+    contabil:{rot:'Contabilidade',ic:'📊',tag:'Contabilidade 100% digital',h:'Sua empresa em dia, sem dor de cabeça',p:'Abertura de empresa, impostos e folha de pagamento com quem entende do assunto.',cta:'Falar com um contador',badge:'✅ Abertura de CNPJ',
+      cards:[['🏢','Abertura de empresa','Do MEI à LTDA, sem burocracia pra você.'],['🧾','Contabilidade mensal','Impostos em dia e relatórios claros.'],['👥','Folha e IR','Folha de pagamento e imposto de renda.']],
+      passos:[['Conte sua situação','Pelo WhatsApp ou formulário.'],['Receba a proposta','Clara, sem letra miúda.'],['Deixe com a gente','E acompanhe tudo pelo celular.']],
+      dep:[['Abriram meu CNPJ rapidinho e me explicaram tudo.','Juliana K.'],['Nunca mais atrasei imposto.','Felipe N.'],['Contador que responde no WhatsApp!','Renata O.']],
+      opts:['Abrir empresa','Trocar de contador','Imposto de renda']},
+    imob:{rot:'Imobiliárias',ic:'🏡',tag:'Imóveis selecionados',h:'O imóvel certo, sem perder tempo',p:'Compra, venda e aluguel com atendimento próximo e visitas agendadas na hora.',cta:'Agendar visita',badge:'🔑 Novos imóveis',
+      cards:[['🏠','Comprar','Imóveis selecionados pro seu perfil.'],['📝','Alugar','Processo simples e rápido.'],['📣','Anunciar','Venda ou alugue o seu imóvel.']],
+      passos:[['Diga o que procura','Bairro, tamanho e valor.'],['Receba as opções','Só o que combina com você.'],['Visite','Com horário marcado.']],
+      dep:[['Encontrei meu apê em uma semana!','Tatiane B.'],['Corretor atencioso e sem enrolação.','Gustavo H.'],['Alugaram minha casa rapidinho.','Lúcia M.']],
+      opts:['Quero comprar','Quero alugar','Quero anunciar']},
+    loja:{rot:'Lojas',ic:'🛍️',tag:'Entrega e retirada',h:'Novidades toda semana, entrega rápida',p:'Os produtos que você procura, com atendimento pelo WhatsApp e troca fácil.',cta:'Ver novidades',badge:'🚚 Entrega na cidade',
+      cards:[['🆕','Lançamentos','Novidades toda semana.'],['🚚','Entrega ou retirada','Você escolhe como receber.'],['🔄','Troca fácil','Sem complicação.']],
+      passos:[['Escolha','Pelo site ou catálogo no WhatsApp.'],['Peça','Pagamento por Pix ou cartão.'],['Receba','Em casa ou na loja.']],
+      dep:[['Chegou rapidinho e bem embalado.','Camila D.'],['Atendimento pelo WhatsApp é ótimo.','Pedro V.'],['Troquei sem nenhuma burocracia.','Larissa G.']],
+      opts:['Quero comprar','Dúvida sobre pedido','Troca']},
+    rest:{rot:'Restaurantes',ic:'🍝',tag:'Reservas e delivery',h:'Comida boa, do jeito que você gosta',p:'Almoço, jantar e delivery com ingredientes frescos e aquele atendimento de casa.',cta:'Reservar mesa',badge:'🍷 Reservas hoje',serif:1,
+      cards:[['🍽️','Almoço executivo','Prato do dia rápido e caprichado.'],['🌙','Jantar','Ambiente aconchegante pra ocasiões especiais.'],['🛵','Delivery','Quentinho na sua casa.']],
+      passos:[['Escolha','Mesa ou delivery.'],['Reserve ou peça','Pelo site ou WhatsApp.'],['Aproveite','A gente cuida do resto.']],
+      dep:[['Melhor massa da cidade!','Fernanda Q.'],['Reservei pelo site, mesa pronta na hora.','André S.'],['Delivery chegou quentinho.','Beatriz N.']],
+      opts:['Reserva','Delivery','Evento']}
+  };
+  var CORES = {lyra:['#0566E8','#0A1F3B','#EEF4FF'],verde:['#0F9D76','#0B2E26','#E9F7F2'],coral:['#E8553F','#2B1420','#FDF0EC'],dourado:['#B8862B','#1E1A14','#FAF4E6'],roxo:['#7C4DFF','#1D1440','#F2EEFF']};
+
+  var q = new URLSearchParams(location.search);
+  var emp = (q.get('e')||'').trim().slice(0,40);
+  var ramo = R[q.get('r')] ? q.get('r') : 'geral';
+  var cor = CORES[q.get('cor')] ? q.get('cor') : 'lyra';
+  var biz = emp || 'Sua Empresa';
+  var $ = function(id){return document.getElementById(id)};
+  if(emp){ $('emp').textContent = 'da ' + emp; document.title = 'Site da ' + emp + ' · Demonstração Lyra'; }
+  var wa = 'Oi, Gilcilene! Vi a demonstração de site' + (emp ? ' para a ' + emp : '') + ' e quero um assim pra minha empresa.';
+  $('wa').href = 'https://wa.me/5562994643122?text=' + encodeURIComponent(wa);
+
+  function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
+  function slug(s){return s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'').slice(0,28)||'suaempresa'}
+  function navLinks(){
+    var p = new URLSearchParams(); if(emp) p.set('e',emp); p.set('r',ramo);
+    [].forEach.call($('dnav').querySelectorAll('a'),function(a){a.href=a.getAttribute('data-p')+'?'+p.toString()});
+  }
+  function group(id,items,cur,label,onpick,swatch){
+    Object.keys(items).forEach(function(k){
+      var b=document.createElement('button'); b.type='button'; b.className=swatch?'sw':'chip';
+      if(swatch){ b.style.background=items[k][0]; b.title=k; b.setAttribute('aria-label','Cor '+k); } else b.textContent=label(k);
+      b.setAttribute('aria-pressed',k===cur);
+      b.onclick=function(){ [].forEach.call($(id).querySelectorAll('button'),function(c){c.setAttribute('aria-pressed',c===b)}); onpick(k); };
+      $(id).appendChild(b);
+    });
+  }
+  group('chips',R,ramo,function(k){return R[k].rot},function(k){ramo=k;navLinks();build(true)});
+  group('cores',CORES,cor,null,function(k){cor=k;paint()},true);
+  group('views',{pc:1,cel:1},innerWidth<700?'cel':'pc',function(k){return k==='pc'?'🖥️ Computador':'📱 Celular'},function(k){$('win').classList.toggle('mob',k==='cel')});
+  if(innerWidth<700) $('win').classList.add('mob');
+  navLinks();
+
+  function paint(){
+    var c=CORES[cor], s=$('site');
+    s.style.setProperty('--c',c[0]); s.style.setProperty('--c2',c[1]); s.style.setProperty('--soft',c[2]);
+  }
+
+  var tok=0;
+  function build(anim){
+    var t=++tok, r=R[ramo], ini=biz.charAt(0).toUpperCase(), s=$('site');
+    $('url').innerHTML='🔒 <b>https://</b>'+esc(slug(biz))+'.com.br';
+    s.className='site'+(r.serif?' serif':'');
+    s.innerHTML=
+      '<div class="s-toast"><div id="stoast"></div></div>'+
+      '<nav class="s-nav reveal"><div class="s-logo"><i>'+esc(ini)+'</i><span>'+esc(biz)+'</span></div>'+
+        '<div class="s-links"><span>Serviços</span><span>Como funciona</span><span>Depoimentos</span><span>Contato</span></div>'+
+        '<a class="s-btn" data-go="form">'+esc(r.cta)+'</a></nav>'+
+      '<header class="s-hero"><div class="reveal"><small>'+esc(r.tag)+'</small><h2>'+esc(r.h)+'</h2><p>'+esc(r.p)+'</p>'+
+        '<div class="acts"><a class="s-btn" data-go="form">'+esc(r.cta)+' →</a><a class="s-btn ghost" data-go="wa">💬 Chamar no WhatsApp</a></div></div>'+
+        '<div class="s-art reveal">'+r.ic+'<span class="badge">'+esc(r.badge)+'</span></div></header>'+
+      '<div class="s-trust reveal"><span>✔ Atendimento rápido</span><span>✔ Resposta no WhatsApp</span><span>✔ Sua cidade · Seu bairro</span></div>'+
+      '<section class="s-sec reveal"><h3>O que fazemos</h3><div class="s-cards">'+
+        r.cards.map(function(c){return '<div class="s-card"><i>'+c[0]+'</i><b>'+esc(c[1])+'</b><p>'+esc(c[2])+'</p></div>'}).join('')+'</div></section>'+
+      '<section class="s-sec reveal" style="padding-top:0"><h3>Como funciona</h3><div class="s-steps">'+
+        r.passos.map(function(c){return '<div><b>'+esc(c[0])+'</b>'+esc(c[1])+'</div>'}).join('')+'</div></section>'+
+      '<section class="s-sec reveal" style="padding-top:0"><h3>Quem já é cliente</h3><div class="s-dep">'+
+        r.dep.map(function(c){return '<figure><span class="st">★★★★★</span><br>“'+esc(c[0])+'”<figcaption>'+esc(c[1])+'</figcaption></figure>'}).join('')+
+        '</div><p class="s-ex">Depoimentos de exemplo. No seu site entram os seus clientes de verdade.</p></section>'+
+      '<section class="s-sec reveal" id="sform" style="padding-top:0"><div class="s-form"><div><h3>Fale com a '+esc(biz)+'</h3><p>Deixe seu contato que a gente te chama no WhatsApp em poucos minutos.</p></div>'+
+        '<form id="f"><input required name="n" placeholder="Seu nome" autocomplete="off"><input required name="w" placeholder="Seu WhatsApp" inputmode="tel" autocomplete="off">'+
+        '<select name="a">'+r.opts.map(function(o){return '<option>'+esc(o)+'</option>'}).join('')+'</select>'+
+        '<button class="s-btn" type="submit">Enviar →</button></form></div></section>'+
+      '<div class="s-foot reveal"><span>© '+esc(biz)+' · Sua cidade - UF</span><span>(00) 0000-0000 · exemplo</span></div>'+
+      '<a class="s-wa" data-go="wa" aria-label="WhatsApp">💬</a>';
+    paint();
+    var view=$('view'); view.scrollTop=0;
+    [].forEach.call(s.querySelectorAll('[data-go]'),function(a){a.onclick=function(e){e.preventDefault();
+      if(a.getAttribute('data-go')==='form'){ view.scrollTop=$('sform').offsetTop-60; setTimeout(function(){$('f').n.focus({preventScroll:true})},450); }
+      else aviso('💬 NOVA CONVERSA','Cliente abriu o WhatsApp pelo site','No site de verdade, esse botão abre a conversa com a '+esc(biz)+'.');
+    }});
+    $('f').onsubmit=function(e){e.preventDefault(); var f=e.target;
+      aviso('🔔 NOVO CONTATO PELO SITE','Novo contato: '+esc(f.n.value),esc(f.a.value)+' · '+esc(f.w.value)+'<br>Chegou no seu WhatsApp e no e-mail na hora.');
+      f.querySelector('button').textContent='Enviado ✅'; setTimeout(function(){f.reset(); f.querySelector('button').textContent='Enviar →'},2500);
+      view.scrollTop=Math.max(0,$('sform').offsetTop-80);
+    };
+    var els=s.querySelectorAll('.reveal'), b=$('build');
+    if(!anim){ [].forEach.call(els,function(x){x.classList.add('in')}); b.classList.add('off'); return; }
+    b.classList.remove('off');
+    var msgs=['montando o site da '+biz+'…','aplicando cores e textos…','ligando WhatsApp e formulário…'], i=0;
+    $('bmsg').textContent=msgs[0];
+    var iv=setInterval(function(){ if(t!==tok){clearInterval(iv);return} i++; if(i<msgs.length) $('bmsg').textContent=msgs[i]; },550);
+    setTimeout(function(){ clearInterval(iv); if(t!==tok) return; b.classList.add('off');
+      [].forEach.call(els,function(x,k){ setTimeout(function(){ if(t===tok) x.classList.add('in') }, 140*k) });
+    },1700);
+  }
+  var tt;
+  function aviso(tag,tit,txt){
+    var d=$('stoast'); d.innerHTML='<small>'+tag+'</small><b>'+tit+'</b><p>'+txt+'</p>';
+    d.classList.remove('on'); void d.offsetWidth; d.classList.add('on');
+    clearTimeout(tt); tt=setTimeout(function(){d.classList.remove('on')},4200);
+  }
+  $('again').onclick=function(){ $('view').scrollIntoView({behavior:'smooth',block:'center'}); build(true); };
+  build(true);
+})();
+</script>
+</body>
+</html>

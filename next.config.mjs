@@ -1,9 +1,14 @@
 /** @type {import("next").NextConfig} */
 const nextConfig = {
   poweredByHeader: false,
-  // lyratech.com.br/demo -> página de demonstração (public/demo/index.html)
+  // Demonstrações (arquivos em public/demo):
+  // lyratech.com.br/demo, /demo/automacoes e /demo/site
   async rewrites() {
-    return [{ source: "/demo", destination: "/demo/index.html" }];
+    return [
+      { source: "/demo", destination: "/demo/index.html" },
+      { source: "/demo/automacoes", destination: "/demo/automacoes.html" },
+      { source: "/demo/site", destination: "/demo/site.html" },
+    ];
   },
 };
 export default nextConfig;
