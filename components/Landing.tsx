@@ -43,7 +43,7 @@ export default function Landing() {
 <a  className="nav-a" href="#metodo">Método</a>
 <a  className="nav-a" href="#resultados">Resultados</a>
 <a  className="nav-a" href="#contato">Contato</a>
-<a  className="nav-a" href="https://app.lyratech.com.br/login" title="Lyra Hub: área do cliente" style={css("display:inline-flex;align-items:center;gap:7px;padding:10px 16px;border-radius:8px;border:1px solid rgba(26,224,255,.45);color:#4FFAFF;font-weight:600")}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/></svg>Entrar</a>
+<a  className="nav-a" href="https://appprofix.vercel.app/login" title="Lyra Hub: área do cliente" style={css("display:inline-flex;align-items:center;gap:7px;padding:10px 16px;border-radius:8px;border:1px solid rgba(26,224,255,.45);color:#4FFAFF;font-weight:600")}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/></svg>Entrar</a>
 <a  className="btn-p" href="#contato" style={css("padding:11px 20px;border-radius:8px;background:#0566E8;color:#EAEFFA;font-weight:600;font-size:14px")}>Falar com especialista</a>
 </nav>
 </div>
