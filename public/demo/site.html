@@ -10,30 +10,10 @@
 <link rel="icon" href="/icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&family=Caveat:wght@700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/demo/base.css">
 <style>
-:root{--navy:#050B33;--deep:#0A1F3B;--cyan:#1AE0FF;--ice:#4FFAFF;--blue:#0566E8;--azure:#00A8FF;--txt:#EAEFFA;--mut:#9FB0D6;
-  --f-d:'Sora',system-ui,sans-serif;--f-b:'Inter',system-ui,sans-serif;--f-m:'IBM Plex Mono',ui-monospace,monospace}
-*{box-sizing:border-box}
-html,body{margin:0}
-body{background:radial-gradient(1200px 700px at 80% -10%,#0d2a6b 0,transparent 60%),var(--navy);color:var(--txt);font-family:var(--f-b);-webkit-font-smoothing:antialiased;min-height:100vh}
-a{color:inherit}
-.top{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:1180px;margin:0 auto;padding:20px 16px}
-.top img{height:40px;display:block}
-.tag{font-family:var(--f-m);font-size:11px;letter-spacing:.08em;color:var(--ice);border:1px solid rgba(26,224,255,.35);border-radius:99px;padding:6px 12px;white-space:nowrap}
-.dnav{max-width:1180px;margin:0 auto;padding:0 16px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
-.dnav a{flex:none;font:600 13px var(--f-b);text-decoration:none;color:var(--mut);padding:8px 14px;border-radius:99px;border:1px solid rgba(234,239,250,.12)}
-.dnav a[aria-current=page]{color:var(--navy);background:var(--ice);border-color:var(--ice)}
-main{max-width:1180px;margin:0 auto;padding:0 16px 40px}
-.kicker{font-family:var(--f-m);font-size:12px;letter-spacing:.12em;color:var(--cyan);margin:26px 0 10px}
-h1{font-family:var(--f-d);font-weight:800;font-size:clamp(28px,4.4vw,48px);line-height:1.08;letter-spacing:-.03em;margin:0;max-width:860px;text-wrap:balance}
-h1 .em{color:var(--cyan)}
-.sub{color:var(--mut);font-size:17px;line-height:1.55;max-width:700px;margin:14px 0 0}
-.sub b{color:var(--txt)}
-.ctrls{display:flex;flex-wrap:wrap;gap:14px 26px;margin:20px 0 0;align-items:center}
 .grp{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .grp>span{font-family:var(--f-m);font-size:12px;color:var(--mut);margin-right:4px}
-.chip{font:500 13px var(--f-b);color:var(--txt);background:rgba(234,239,250,.06);border:1px solid rgba(234,239,250,.16);border-radius:99px;padding:7px 13px;cursor:pointer}
-.chip[aria-pressed=true]{background:var(--blue);border-color:var(--azure)}
 .sw{width:28px;height:28px;border-radius:50%;border:2px solid rgba(234,239,250,.25);cursor:pointer;padding:0}
 .sw[aria-pressed=true]{border-color:#fff;box-shadow:0 0 0 3px rgba(26,224,255,.45)}
 
@@ -117,45 +97,50 @@ h1 .em{color:var(--cyan)}
 .side li{display:flex;gap:10px;line-height:1.45;color:var(--mut);font-size:15px}
 .side li b{color:var(--txt);display:block}
 .side li i{font-style:normal;flex:none;width:28px;height:28px;border-radius:8px;background:rgba(26,224,255,.12);display:grid;place-items:center;font-size:15px}
-.note{font-family:'Caveat',cursive;font-size:25px;color:var(--ice);transform:rotate(-2deg);margin:22px 0 0}
 
-.cta{margin-top:56px;border:1px solid rgba(26,224,255,.25);border-radius:20px;padding:32px 24px;background:linear-gradient(135deg,rgba(5,102,232,.25),rgba(10,31,59,.6))}
-.cta h2{font-family:var(--f-d);font-weight:800;font-size:clamp(24px,3.2vw,34px);letter-spacing:-.02em;margin:0}
-.cta p{color:var(--mut);line-height:1.55;margin:10px 0 0;max-width:660px}
-.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
-.btn{display:inline-flex;align-items:center;gap:8px;height:50px;padding:0 24px;border-radius:10px;background:var(--blue);color:#fff;font-weight:600;font-size:16px;text-decoration:none;box-shadow:4px 4px 0 var(--azure)}
-.btn.o{background:transparent;border:1px solid rgba(0,168,255,.5);box-shadow:none;cursor:pointer;font-family:inherit}
-footer{max-width:1180px;margin:0 auto;padding:24px 16px 40px;color:#6f80a8;font-size:13px;line-height:1.6}
-@keyframes sp{to{transform:rotate(360deg)}}
 @media (max-width:960px){.stage{grid-template-columns:1fr}.view{height:560px}}
 @media (max-width:520px){.vgrp{display:none}}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition-duration:.01s!important}}
+
+@keyframes sp{to{transform:rotate(360deg)}}
+.ctrls{display:flex;flex-direction:column;align-items:stretch;gap:12px;margin-top:22px}
+.ctrls>*{min-width:0}
+.ctrls .rail{margin-top:0}
+.ctrls2{display:flex;flex-wrap:wrap;gap:12px 26px;align-items:center}
+.grp>span{font:500 11px var(--f-m);letter-spacing:.1em;color:var(--mut);margin-right:4px}
+.stage.site-st{grid-template-columns:minmax(0,1fr) 300px;margin-top:30px}
+.side .note{opacity:1}
+@media (max-width:960px){.stage.site-st{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<header class="top">
+<div class="bg" aria-hidden="true"><i></i><i></i></div>
+
+<header class="hdr">
   <a href="/" aria-label="Lyra Technology &amp; Consulting"><img src="/demo/logo.svg" alt="Lyra Technology &amp; Consulting"></a>
-  <span class="tag">DEMONSTRAÇÃO · DADOS FICTÍCIOS</span>
+  <span class="tag"><span class="dot"></span>DEMONSTRAÇÃO<span class="long"> · DADOS FICTÍCIOS</span></span>
 </header>
-<nav class="dnav" id="dnav" aria-label="Outras demonstrações">
+<div class="seg"><nav aria-label="Outras demonstrações" id="dnav">
   <a data-p="/demo">💬 Atendimento</a>
   <a data-p="/demo/automacoes">⚡ Automações</a>
-  <a data-p="/demo/site" aria-current="page">🖥️ Site / landing page</a>
-</nav>
+  <a data-p="/demo/site" aria-current="page">🖥️ Site</a>
+</nav></div>
 
 <main>
   <section>
-    <p class="kicker">SITE / LANDING PAGE</p>
-    <h1>Assim ficaria o site <span class="em" id="emp">da sua empresa</span></h1>
+    <p class="kick"><span class="dot"></span>SITE / LANDING PAGE</p>
+    <h1>Assim ficaria o site <span class="hl" id="emp">da sua empresa</span></h1>
     <p class="sub">Montamos um exemplo com o nome e o ramo de vocês. <b>Mude a cor, veja no celular e teste o formulário</b>: é ele que transforma visita em cliente.</p>
     <div class="ctrls">
-      <div class="grp" id="chips"><span>RAMO:</span></div>
-      <div class="grp" id="cores"><span>COR:</span></div>
-      <div class="grp vgrp" id="views"><span>VER NO:</span></div>
+      <div class="rail" id="chips"><span>RAMO</span></div>
+      <div class="ctrls2">
+        <div class="grp" id="cores"><span>COR</span></div>
+        <div class="grp vgrp" id="views"><span>VER NO</span></div>
+      </div>
     </div>
   </section>
 
-  <section class="stage">
+  <section class="stage site-st">
     <div class="win" id="win">
       <div class="bar"><div class="dots"><i></i><i></i><i></i></div><div class="url" id="url"></div></div>
       <div class="view" id="view">
@@ -177,17 +162,19 @@ footer{max-width:1180px;margin:0 auto;padding:24px 16px 40px;color:#6f80a8;font-
     </aside>
   </section>
 
-  <section class="cta">
+  <section class="cta rv">
     <h2>Quer um site assim pra sua empresa?</h2>
     <p>A Lyra cria o site com a cara do seu negócio, publica no seu domínio e conecta o formulário e o WhatsApp. Atendemos o Brasil todo, 100% online.</p>
     <div class="btns">
-      <a class="btn" id="wa" href="https://wa.me/5562994643122" target="_blank" rel="noopener">Quero um site assim →</a>
+      <a class="btn wa js-wa" href="https://wa.me/5562994643122" target="_blank" rel="noopener">💬 Quero um site assim</a>
       <button class="btn o" id="again" type="button">↻ Montar de novo</button>
     </div>
   </section>
 </main>
 
 <footer>Esta é uma demonstração com dados fictícios (depoimentos, telefone e endereço são exemplos), feita pela Lyra Technology &amp; Consulting.<br>lyratech.com.br · contato@lyratech.com.br · (62) 99464-3122</footer>
+<div class="sticky" id="sticky"><a class="btn wa js-wa" href="https://wa.me/5562994643122" target="_blank" rel="noopener">💬 Quero um site assim</a></div>
+<script src="/demo/base.js"></script>
 
 <script>
 (function(){
@@ -238,7 +225,7 @@ footer{max-width:1180px;margin:0 auto;padding:24px 16px 40px;color:#6f80a8;font-
   var $ = function(id){return document.getElementById(id)};
   if(emp){ $('emp').textContent = 'da ' + emp; document.title = 'Site da ' + emp + ' · Demonstração Lyra'; }
   var wa = 'Oi, Gilcilene! Vi a demonstração de site' + (emp ? ' para a ' + emp : '') + ' e quero um assim pra minha empresa.';
-  $('wa').href = 'https://wa.me/5562994643122?text=' + encodeURIComponent(wa);
+  LyraDemo.wa(wa);
 
   function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
   function slug(s){return s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'').slice(0,28)||'suaempresa'}
@@ -255,11 +242,12 @@ footer{max-width:1180px;margin:0 auto;padding:24px 16px 40px;color:#6f80a8;font-
       $(id).appendChild(b);
     });
   }
-  group('chips',R,ramo,function(k){return R[k].rot},function(k){ramo=k;navLinks();build(true)});
+  LyraDemo.chips($('chips'),R,ramo,function(k){return R[k].rot},function(k){ramo=k;navLinks();build(true)});
   group('cores',CORES,cor,null,function(k){cor=k;paint()},true);
   group('views',{pc:1,cel:1},innerWidth<700?'cel':'pc',function(k){return k==='pc'?'🖥️ Computador':'📱 Celular'},function(k){$('win').classList.toggle('mob',k==='cel')});
   if(innerWidth<700) $('win').classList.add('mob');
   navLinks();
+  LyraDemo.init();
 
   function paint(){
     var c=CORES[cor], s=$('site');

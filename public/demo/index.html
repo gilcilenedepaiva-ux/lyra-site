@@ -6,158 +6,93 @@
 <title>Demonstração de atendimento · Lyra</title>
 <meta name="description" content="Veja como ficaria o atendimento automático da sua empresa no WhatsApp. Demonstração interativa da Lyra Technology & Consulting.">
 <meta name="robots" content="noindex">
+<meta name="theme-color" content="#050B33">
 <meta property="og:title" content="Assim ficaria o atendimento da sua empresa">
 <meta property="og:image" content="https://lyratech.com.br/demo/demo.gif">
 <link rel="icon" href="/icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/demo/base.css">
 <style>
-:root{--navy:#050B33;--deep:#0A1F3B;--cyan:#1AE0FF;--ice:#4FFAFF;--blue:#0566E8;--azure:#00A8FF;--txt:#EAEFFA;--mut:#9FB0D6;
-  --f-d:'Sora',system-ui,sans-serif;--f-b:'Inter',system-ui,sans-serif;--f-m:'IBM Plex Mono',ui-monospace,monospace}
-*{box-sizing:border-box}
-html,body{margin:0}
-body{background:radial-gradient(1200px 700px at 80% -10%,#0d2a6b 0,transparent 60%),var(--navy);color:var(--txt);font-family:var(--f-b);-webkit-font-smoothing:antialiased;min-height:100vh}
-a{color:inherit}
-.top{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:1080px;margin:0 auto;padding:20px 16px}
-.top img{height:40px;display:block}
-.tag{font-family:var(--f-m);font-size:11px;letter-spacing:.08em;color:var(--ice);border:1px solid rgba(26,224,255,.35);border-radius:99px;padding:6px 12px;white-space:nowrap}
-.dnav{max-width:1080px;margin:0 auto;padding:0 16px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
-.dnav a{flex:none;font:600 13px var(--f-b);text-decoration:none;color:var(--mut);padding:8px 14px;border-radius:99px;border:1px solid rgba(234,239,250,.12)}
-.dnav a[aria-current=page]{color:var(--navy);background:var(--ice);border-color:var(--ice)}
-main{max-width:1080px;margin:0 auto;padding:0 16px 40px}
-.kicker{font-family:var(--f-m);font-size:12px;letter-spacing:.12em;color:var(--cyan);margin:26px 0 10px}
-h1{font-family:var(--f-d);font-weight:800;font-size:clamp(28px,4.4vw,48px);line-height:1.08;letter-spacing:-.03em;margin:0;max-width:820px;text-wrap:balance}
-h1 .em{color:var(--cyan)}
-.sub{color:var(--mut);font-size:17px;line-height:1.55;max-width:680px;margin:14px 0 0}
-.sub b{color:var(--txt)}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0}
-.chips span{font-family:var(--f-m);font-size:12px;color:var(--mut);align-self:center;margin-right:4px}
-.chip{font:500 13px var(--f-b);color:var(--txt);background:rgba(234,239,250,.06);border:1px solid rgba(234,239,250,.16);border-radius:99px;padding:7px 13px;cursor:pointer}
-.chip[aria-pressed=true]{background:var(--blue);border-color:var(--azure)}
-.stage{display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr);gap:48px;align-items:start;margin-top:32px}
-
-/* telefone */
-.phone{position:relative;width:100%;max-width:360px;height:640px;border-radius:38px;background:#0b0f1d;padding:10px;box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 0 1px rgba(234,239,250,.12),8px 8px 0 var(--blue);margin:0 auto}
-.screen{position:relative;height:100%;border-radius:30px;overflow:hidden;background:#E9EEF7;display:flex;flex-direction:column}
-.ph-top{display:flex;align-items:center;gap:10px;background:var(--deep);color:#fff;padding:16px 14px 12px}
-.av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--cyan));display:grid;place-items:center;font:700 16px var(--f-d);flex:none}
-.ph-top b{display:block;font:600 15px var(--f-b);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:230px}
-.ph-top small{font-size:12px;color:var(--ice)}
-.chat{flex:1;min-height:0;overflow-y:auto;padding:14px 12px 8px;display:flex;flex-direction:column;gap:6px;scroll-behavior:smooth;scrollbar-width:none}
-.chat::-webkit-scrollbar{display:none}
-.day{align-self:center;font:500 11px var(--f-b);color:#5b6b8c;background:#dbe3f1;border-radius:8px;padding:4px 10px;margin-bottom:4px}
-.msg{max-width:82%;padding:8px 10px 6px;border-radius:12px;font-size:14.5px;line-height:1.4;color:#0A1F3B;box-shadow:0 1px 1px rgba(10,31,59,.12);animation:pop .28s ease-out both;white-space:pre-line}
-.msg time{display:block;text-align:right;font-size:10.5px;color:#6b7a99;margin-top:2px}
-.in{align-self:flex-start;background:#fff;border-top-left-radius:4px}
-.out{align-self:flex-end;background:#CDEFFF;border-top-right-radius:4px}
-.typing{align-self:flex-start;background:#fff;border-radius:12px;border-top-left-radius:4px;padding:11px 12px;display:flex;gap:4px;animation:pop .2s both}
-.typing i{width:7px;height:7px;border-radius:50%;background:#8a98b6;animation:bl 1s infinite}
-.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
-.replies{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;padding:8px 12px 14px;min-height:58px;background:#E9EEF7}
-.rb{font:600 13.5px var(--f-b);color:var(--blue);background:#fff;border:1.5px solid var(--blue);border-radius:99px;padding:8px 13px;cursor:pointer;animation:pop .25s both}
-.rb:hover{background:var(--blue);color:#fff}
-.rb.hint{animation:pop .25s both,pulse 1.4s 1s infinite}
-.rb.tap{background:var(--blue);color:#fff;transform:scale(.95)}
-.toast{position:absolute;left:10px;right:10px;top:10px;z-index:5;background:rgba(10,31,59,.97);color:#fff;border-radius:16px;padding:12px 14px;box-shadow:0 10px 30px rgba(0,0,0,.35);border:1px solid rgba(26,224,255,.4);transform:translateY(-130%);transition:transform .5s cubic-bezier(.2,.9,.3,1.2)}
-.toast.on{transform:none}
-.toast small{display:block;font:500 11px var(--f-m);letter-spacing:.06em;color:var(--ice);margin-bottom:4px}
-.toast b{font-weight:600;font-size:14px}
-.toast p{margin:3px 0 0;font-size:13px;color:#c9d6f2;line-height:1.35}
-
-/* passos */
-.steps{list-style:none;margin:0;padding:0;counter-reset:s;position:relative}
-.steps:before{content:"";position:absolute;left:19px;top:20px;bottom:20px;width:2px;background:rgba(234,239,250,.12)}
-.steps li{counter-increment:s;position:relative;padding:12px 0 22px 60px;opacity:.38;transition:opacity .4s}
-.steps li:before{content:counter(s);position:absolute;left:0;top:8px;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font:700 16px var(--f-d);background:var(--navy);border:2px solid rgba(234,239,250,.25);transition:all .4s}
-.steps li.on{opacity:1}
-.steps li.on:before{background:var(--blue);border-color:var(--cyan);box-shadow:0 0 0 6px rgba(26,224,255,.14)}
-.steps b{display:block;font:700 20px var(--f-d);letter-spacing:-.01em}
-.steps span{display:block;color:var(--mut);margin-top:4px;line-height:1.45}
-.steps .clock{font-family:var(--f-m);font-size:12px;color:var(--ice);margin-top:6px}
-.note{font-family:'Caveat',cursive;font-size:26px;color:var(--ice);transform:rotate(-2deg);margin:4px 0 0 60px}
-
-.cta{margin-top:56px;border:1px solid rgba(26,224,255,.25);border-radius:20px;padding:32px 24px;background:linear-gradient(135deg,rgba(5,102,232,.25),rgba(10,31,59,.6))}
-.cta h2{font-family:var(--f-d);font-weight:800;font-size:clamp(24px,3.2vw,34px);letter-spacing:-.02em;margin:0}
-.cta p{color:var(--mut);line-height:1.55;margin:10px 0 0;max-width:640px}
-.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
-.btn{display:inline-flex;align-items:center;gap:8px;height:50px;padding:0 24px;border-radius:10px;background:var(--blue);color:#fff;font-weight:600;font-size:16px;text-decoration:none;box-shadow:4px 4px 0 var(--azure)}
-.btn.o{background:transparent;border:1px solid rgba(0,168,255,.5);box-shadow:none;cursor:pointer;font-family:inherit}
-footer{max-width:1080px;margin:0 auto;padding:24px 16px 40px;color:#6f80a8;font-size:13px;line-height:1.6}
-
-@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.97)}to{opacity:1;transform:none}}
-@keyframes bl{0%,60%,100%{opacity:.35}30%{opacity:1}}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(5,102,232,.45)}50%{box-shadow:0 0 0 7px rgba(5,102,232,0)}}
-
-@media (max-width:820px){
-  .stage{grid-template-columns:1fr;gap:36px}
-  .phone{height:600px}
-  .steps b{font-size:18px}
-}
-@media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition-duration:.01s!important}}
-
-/* modo GIF: só o telefone */
+/* modo GIF: só o celular */
 body.gif{background:var(--navy);min-height:0}
-body.gif .top,body.gif .dnav,body.gif .intro,body.gif .steps,body.gif .note,body.gif .cta,body.gif footer{display:none}
+body.gif .bg,body.gif .hdr,body.gif .seg,body.gif .intro,body.gif .corecol,body.gif .cta,body.gif footer,body.gif .sticky,body.gif .fl{display:none!important}
 body.gif main{padding:20px}
-body.gif .stage{display:block;margin:0}
-body.gif .phone{box-shadow:0 0 0 1px rgba(234,239,250,.12),8px 8px 0 var(--blue)}
+body.gif .stage.top{display:block}
+body.gif .phwrap{padding:0}
+body.gif .phwrap:before{display:none}
 </style>
 </head>
 <body>
-<header class="top">
+<div class="bg" aria-hidden="true"><i></i><i></i></div>
+
+<header class="hdr">
   <a href="/" aria-label="Lyra Technology &amp; Consulting"><img src="/demo/logo.svg" alt="Lyra Technology &amp; Consulting"></a>
-  <span class="tag">DEMONSTRAÇÃO · DADOS FICTÍCIOS</span>
+  <span class="tag"><span class="dot"></span>DEMONSTRAÇÃO<span class="long"> · DADOS FICTÍCIOS</span></span>
 </header>
-<nav class="dnav" id="dnav" aria-label="Outras demonstrações">
+<div class="seg"><nav aria-label="Outras demonstrações">
   <a data-p="/demo" aria-current="page">💬 Atendimento</a>
   <a data-p="/demo/automacoes">⚡ Automações</a>
-  <a data-p="/demo/site">🖥️ Site / landing page</a>
-</nav>
+  <a data-p="/demo/site">🖥️ Site</a>
+</nav></div>
 
 <main>
-  <section class="intro">
-    <p class="kicker">ATENDIMENTO AUTOMÁTICO NO WHATSAPP</p>
-    <h1>Assim ficaria o atendimento <span class="em" id="emp">da sua empresa</span></h1>
-    <p class="sub">Um cliente manda mensagem às <b>22h04</b>. Ninguém da equipe está online. Veja o que acontece. <b>Responda clicando nos botões</b>, como se você fosse o cliente.</p>
-    <div class="chips" id="chips"><span>VER COMO FICA PARA:</span></div>
-  </section>
+  <section class="stage top">
+    <div class="intro">
+      <p class="kick"><span class="dot"></span>ATENDIMENTO AUTOMÁTICO NO WHATSAPP</p>
+      <h1>Assim ficaria o atendimento <span class="hl" id="emp">da sua empresa</span></h1>
+      <p class="sub">Um cliente manda mensagem às <b>22h04</b>. Ninguém da equipe está online. <b>Responda tocando nos botões</b>, como se você fosse o cliente.</p>
+      <div class="rail" id="chips"><span>RAMO</span></div>
+    </div>
 
-  <section class="stage">
-    <div class="phone" aria-label="Simulação de conversa">
-      <div class="screen">
-        <div class="toast" id="toast" role="status" aria-live="polite"></div>
-        <div class="ph-top"><div class="av" id="av">L</div><div><b id="biz">Sua empresa</b><small id="st">online</small></div></div>
-        <div class="chat" id="chat"></div>
-        <div class="replies" id="replies"></div>
+    <div class="phcol">
+      <div class="phwrap">
+        <div class="phone" aria-label="Simulação de conversa no WhatsApp">
+          <div class="screen">
+            <div class="toast" id="toast" role="status" aria-live="polite"></div>
+            <div class="ph-top"><div class="av" id="av">L</div><div><b id="biz">Sua empresa</b><small id="st">online</small></div></div>
+            <div class="chat" id="chat"></div>
+            <div class="replies" id="replies"></div>
+          </div>
+        </div>
+        <div class="fl a" id="fa"><i>🌙</i><div><small>22:04 · FORA DO HORÁRIO</small><b>Cliente chamou</b></div></div>
+        <div class="fl b" id="fb"><i>⚡</i><div><small>TEMPO DE RESPOSTA</small><b>Respondeu em 2s</b></div></div>
+        <div class="fl c" id="fc"><i>📅</i><div><small>AGENDA</small><b id="fcb">Horário reservado</b></div></div>
       </div>
     </div>
 
-    <div>
-      <ol class="steps" id="steps">
-        <li><b>A mensagem chega</b><span>Às 22h04, fora do horário. Hoje, ela ficaria sem resposta até amanhã.</span></li>
-        <li><b>A IA responde em segundos</b><span>Com o jeito, os horários e as informações da sua empresa.</span></li>
-        <li><b>Entende o que o cliente quer</b><span>Faz as perguntas certas e separa quem está pronto pra comprar.</span></li>
-        <li><b>Agenda sozinha</b><span>Oferece só os horários livres da sua agenda. Sem conflito, sem vai e volta.</span></li>
-        <li><b>Avisa você</b><span>Você recebe o resumo e o cliente fica registrado na sua lista.</span><div class="clock" id="clock"></div></li>
-      </ol>
-      <p class="note">enquanto você dormia ✨</p>
+    <div class="corecol rv">
+      <div class="core">
+        <div class="core-h"><span><span class="dot"></span>BASTIDORES · LYRA-CORE</span><div class="prog" id="prog"></div></div>
+        <ul class="log" id="log"></ul>
+        <div class="stats">
+          <div><b id="s1">—</b><small>TEMPO TOTAL</small></div>
+          <div><b id="s2">—</b><small>PESSOAS DA EQUIPE</small></div>
+          <div><b id="s3">—</b><small>CLIENTE NA AGENDA</small></div>
+        </div>
+      </div>
+      <p class="note" id="note">tudo isso enquanto você dormia ✨</p>
     </div>
   </section>
 
-  <section class="cta">
+  <section class="cta rv">
     <h2>Quer isso funcionando na sua empresa?</h2>
-    <p>A Lyra monta o atendimento com as informações do seu negócio, conecta no seu WhatsApp e acompanha os resultados. Atendemos o Brasil todo, 100% online.</p>
+    <p>A Lyra monta o atendimento com as informações do seu negócio, conecta no WhatsApp que vocês já usam e acompanha os resultados. Atendemos o Brasil todo, 100% online.</p>
     <div class="btns">
-      <a class="btn" id="wa" href="https://wa.me/5562994643122" target="_blank" rel="noopener">Quero isso na minha empresa →</a>
+      <a class="btn wa js-wa" href="https://wa.me/5562994643122" target="_blank" rel="noopener">💬 Quero isso na minha empresa</a>
       <button class="btn o" id="again" type="button">↻ Ver de novo</button>
     </div>
+    <p class="note">a gente monta tudo pra você 💙</p>
   </section>
 </main>
 
 <footer>Esta é uma demonstração com dados fictícios, feita pela Lyra Technology &amp; Consulting.<br>lyratech.com.br · contato@lyratech.com.br · (62) 99464-3122</footer>
+<div class="sticky" id="sticky"><a class="btn wa js-wa" href="https://wa.me/5562994643122" target="_blank" rel="noopener">💬 Quero isso na minha empresa</a></div>
 
+<script src="/demo/base.js"></script>
 <script>
 (function(){
+  var L = LyraDemo, $ = L.$;
   var R = {
     geral:{rot:'Serviços',cli:'Oi, boa noite! Queria um orçamento, como funciona?',q:'Claro! Pra eu te ajudar melhor, é para:',ops:['Minha empresa','Pra mim','Só uma dúvida'],
       s:'Show! Separei estes horários para uma conversa rápida de 15 min com a equipe:',slots:['Amanhã 09:30','Amanhã 14:00','Qui 10:00'],item:'Orçamento'},
@@ -174,40 +109,27 @@ body.gif .phone{box-shadow:0 0 0 1px rgba(234,239,250,.12),8px 8px 0 var(--blue)
     rest:{rot:'Restaurantes',cli:'Vocês têm mesa pra amanhã à noite?',q:'Temos sim! Pra quantas pessoas?',ops:['2 pessoas','4 pessoas','6 ou mais'],
       s:'Reservando! Escolhe o horário:',slots:['19:30','20:30','21:30'],item:'Reserva de mesa'}
   };
-  var p = new URLSearchParams(location.search);
-  var GIF = p.get('gif')==='1', AUTO = GIF || p.get('auto')==='1';
-  var emp = (p.get('e')||'').trim().slice(0,40);
-  var ramo = R[p.get('r')] ? p.get('r') : 'geral';
+  var GIF = L.q.get('gif')==='1', AUTO = GIF || L.q.get('auto')==='1';
+  var emp = L.emp, ramo = R[L.q.get('r')] ? L.q.get('r') : 'geral';
   if(GIF) document.body.classList.add('gif');
 
-  var $ = function(id){return document.getElementById(id)};
-  var chat=$('chat'), rep=$('replies'), steps=$('steps').children, toast=$('toast');
-  var bizName = emp || 'Sua Empresa';
-  $('biz').textContent = bizName;
-  $('av').textContent = bizName.charAt(0).toUpperCase();
+  var chat=$('chat'), rep=$('replies'), toast=$('toast');
+  var biz = emp || 'Sua Empresa';
+  $('biz').textContent = biz; $('av').textContent = biz.charAt(0).toUpperCase();
   if(emp){ $('emp').textContent = 'da ' + emp; document.title = 'Atendimento da ' + emp + ' · Demonstração Lyra'; }
-  var wa = 'Oi, Gilcilene! Vi a demonstração de atendimento automático' + (emp ? ' para a ' + emp : '') + ' e quero saber como ficaria na minha empresa.';
-  $('wa').href = 'https://wa.me/5562994643122?text=' + encodeURIComponent(wa);
+  L.wa('Oi, Gilcilene! Vi a demonstração de atendimento automático' + (emp ? ' para a ' + emp : '') + ' e quero saber como ficaria na minha empresa.');
+  L.nav(ramo);
+  L.chips($('chips'), R, ramo, function(k){ return R[k].rot; }, function(k){ ramo = k; L.nav(ramo); run(); });
+  if(!GIF) L.init();
 
-  function navLinks(){
-    var q = new URLSearchParams(); if(emp) q.set('e',emp); q.set('r',ramo);
-    [].forEach.call($('dnav').querySelectorAll('a'),function(a){a.href=a.getAttribute('data-p')+'?'+q.toString()});
-  }
-  navLinks();
-
-  // chips de ramo
-  Object.keys(R).forEach(function(k){
-    var b=document.createElement('button'); b.type='button'; b.className='chip'; b.textContent=R[k].rot;
-    b.setAttribute('aria-pressed', k===ramo); b.onclick=function(){ ramo=k; [].forEach.call(document.querySelectorAll('.chip'),function(c){c.setAttribute('aria-pressed',c===b)}); navLinks(); run(); };
-    $('chips').appendChild(b);
-  });
-
-  var token=0, min=4;
+  var core = L.Core($('log'), $('prog'), 5);
+  var token=0, min=4, sec=0;
   function wait(ms,t){return new Promise(function(ok,no){setTimeout(function(){t===token?ok():no('stop')},ms)})}
   function hhmm(){return '22:' + String(min).padStart(2,'0')}
+  function clock(){ sec += 7 + Math.floor(Math.random()*9); if(sec>59){sec-=60;min++;} return hhmm()+':'+String(sec).padStart(2,'0'); }
   function scroll(){chat.scrollTop=chat.scrollHeight}
   function bubble(cls,txt){var d=document.createElement('div');d.className='msg '+cls;d.textContent=txt;var t=document.createElement('time');t.textContent=hhmm()+(cls==='out'?' ✓✓':'');d.appendChild(t);chat.appendChild(d);scroll();return d}
-  function step(n){for(var i=0;i<steps.length;i++)steps[i].classList.toggle('on',i<n)}
+  function fl(id,on){ $(id).classList.toggle('on',on); }
   async function bot(txt,t,ms){
     $('st').textContent='digitando…';
     var ty=document.createElement('div');ty.className='typing';ty.innerHTML='<i></i><i></i><i></i>';chat.appendChild(ty);scroll();
@@ -224,29 +146,38 @@ body.gif .phone{box-shadow:0 0 0 1px rgba(234,239,250,.12),8px 8px 0 var(--blue)
       if(AUTO){ setTimeout(function(){ if(t!==token) return; var b=rep.children[ops.length>2?1:0]; if(b){b.classList.add('tap'); setTimeout(function(){b.click()},350);} },1500); }
     });
   }
+  var E = L.esc;
 
   async function run(){
-    var t=++token, r=R[ramo], it; min=4;
-    chat.innerHTML='<div class="day">HOJE</div>'; rep.innerHTML=''; toast.classList.remove('on'); step(0); $('clock').textContent='';
+    var t=++token, r=R[ramo], it; min=4; sec=0;
+    chat.innerHTML='<div class="day">HOJE</div>'; rep.innerHTML=''; toast.classList.remove('on');
+    ['fa','fb','fc'].forEach(function(f){fl(f,false)}); $('note').classList.remove('on');
+    core.reset(); $('s1').textContent=$('s2').textContent=$('s3').textContent='—';
     try{
-      await wait(700,t); bubble('out',r.cli); step(1);
-      await wait(600,t); step(2);
-      await bot('Oi! Aqui é a assistente virtual da '+bizName+' 😊 Posso te ajudar agora mesmo.',t,1000);
-      await bot(r.q,t,900); step(3);
-      var a = await ask(r.ops,t); bubble('out',a); min=5; it = r.ans ? a : r.item;
-      await bot(r.s,t,1000); step(4);
+      await wait(700,t); bubble('out',r.cli);
+      core.line(clock(),'<span class="wa">●</span> nova mensagem · <b>fora do horário</b>'); core.prog(1); fl('fa',true);
+      await wait(600,t);
+      await bot('Oi! Aqui é a assistente virtual da '+biz+' 😊 Posso te ajudar agora mesmo.',t,1000);
+      core.line(clock(),'<span class="ok">✓</span> assistente respondeu em <b class="hi">2s</b>'); core.prog(2); fl('fb',true);
+      await bot(r.q,t,900);
+      var a = await ask(r.ops,t); bubble('out',a); it = r.ans ? a : r.item;
+      core.line(clock(),'<span class="ok">✓</span> entendeu o pedido: <b>'+E(a)+'</b>'); core.prog(3);
+      await bot(r.s,t,1000);
+      core.line(clock(),'agenda consultada · <b>3 horários livres</b>');
       var s = await ask(r.slots,t); bubble('out',s);
+      core.line(clock(),'<span class="ok">✓</span> agenda.reservar(<b class="hi">'+E(s)+'</b>)'); core.prog(4);
+      $('fcb').textContent = s + ' reservado'; fl('fc',true);
       await bot('Prontinho, agendado ✅\n'+it+' · '+s+'\nTe mando um lembrete antes. Qualquer coisa é só chamar!',t,1100);
-      step(5);
-      await wait(700,t);
-      toast.innerHTML='<small>🔔 AVISO PARA VOCÊ · 22:05</small><b>Novo cliente agendado</b><p>'+esc(it)+(r.ans?'':' · '+esc(a))+' · '+esc(s)+'<br>Respondido em 3 segundos, fora do horário.</p>';
+      await wait(600,t);
+      toast.innerHTML='<small>🔔 AVISO PARA VOCÊ · '+hhmm()+'</small><b>Novo cliente agendado</b><p>'+E(it)+(r.ans?'':' · '+E(a))+' · '+E(s)+'<br>Respondido em 2 segundos, fora do horário.</p>';
       toast.classList.add('on');
-      $('clock').textContent='22h04 → 22h05 · tudo resolvido em 1 minuto';
+      core.line(clock(),'<span class="ok">✓</span> aviso enviado pra você · cliente salvo na lista'); core.prog(5);
+      $('s1').textContent='1 min'; $('s2').textContent='0'; $('s3').textContent='+1';
+      $('note').classList.add('on');
       if(GIF){ await wait(3200,t); run(); }
     }catch(e){}
   }
-  function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
-  $('again').onclick=run;
+  $('again').onclick=function(){ document.querySelector('.phone').scrollIntoView({behavior:'smooth',block:'center'}); run(); };
   run();
 })();
 </script>
